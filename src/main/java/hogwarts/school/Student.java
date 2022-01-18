@@ -26,13 +26,13 @@ public class Student {
         if (this.getClass() != other.getClass()) {
             return false;
         }
-        Student name1 = (Student) other;
-        return name.equals(name1.name);
+        Student id1 = (Student) other;
+        return id.equals(id1.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id);
     }
 
     @Override

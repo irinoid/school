@@ -5,17 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class SchoolApplication {
-    public ArrayList<Faculty> listFaculty = new ArrayList<>();
-    public ArrayList<Student> listStudent = new ArrayList<>();
+    private final List<Faculty> listFaculty = new ArrayList<>();
+    private final List<Student> listStudent = new ArrayList<>();
 
     public static void main(String[] args) {
         SpringApplication.run(SchoolApplication.class, args);
-
-
-
     }
 
     @PostConstruct
@@ -29,7 +27,5 @@ public class SchoolApplication {
         listStudent.add(new Student(3L, "Germiona Granger", 7));
         System.out.println(listFaculty.toString());
         System.out.println(listStudent.toString());
-
     }
-
 }

@@ -30,13 +30,13 @@ public class Faculty {
         if (this.getClass() != other.getClass()) {
             return false;
         }
-        Faculty name1 = (Faculty) other;
-        return name.equals(name1.name);
+        Faculty id1 = (Faculty) other;
+        return id.equals(id1.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id);
     }
 
     @Override
