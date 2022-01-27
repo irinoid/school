@@ -1,11 +1,10 @@
 package hogwarts.school.controller;
 
+import hogwarts.school.exceptions.BadRequest;
+import hogwarts.school.exceptions.NotFound;
 import hogwarts.school.model.Faculty;
-import hogwarts.school.model.Student;
 import hogwarts.school.service.FacultyService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Collection;
 
 @RestController
@@ -20,17 +19,21 @@ public class FacultyController {
 
     @GetMapping("{id}")
     public Faculty getFacultyInfo(@PathVariable long id){
-        return facultyService.findFaculty(id);
+        Faculty faculty = facultyService.findFaculty(id);
+        if (faculty == null){
+            throw new BadRequest();
+        }
+        return faculty;
     }
 
     @GetMapping
-    public ResponseEntity<Collection<Faculty>> getAllFaculties(){
-        return ResponseEntity.ok(facultyService.getAllFaculties());
+    public Collection<Faculty> getAllFaculties(){
+        return facultyService.getAllFaculties();
     }
 
-    @GetMapping("filter/{color}")
-    public ResponseEntity<Collection<Faculty>> getFacultiesSameColor(@PathVariable String color){
-        return ResponseEntity.ok(facultyService.getListSameColor(color));
+    @GetMapping("/filter/{color}")
+    public Collection<Faculty> getFacultiesSameColor(@PathVariable String color){
+        return facultyService.getListSameColor(color);
     }
 
     @PostMapping
@@ -39,20 +42,20 @@ public class FacultyController {
     }
 
     @PutMapping
-    public ResponseEntity<Faculty> editFaculty(@RequestBody Faculty faculty){
+    public Faculty editFaculty(@RequestBody Faculty faculty){
         Faculty editFaculty = facultyService.editFaculty(faculty);
         if (editFaculty ==null){
-            return ResponseEntity.badRequest().build();
+            throw new BadRequest();
         }
-        return ResponseEntity.ok(editFaculty);
+        return editFaculty;
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Faculty> deleteFaculty(@PathVariable long id){
+    public Faculty deleteFaculty(@PathVariable long id){
         Faculty delFaculty = facultyService.deleteFaculty(id);
         if (delFaculty ==null){
-            return ResponseEntity.notFound().build();
+            throw new NotFound();
         }
-        return ResponseEntity.ok(delFaculty);
+        return delFaculty;
     }
 }

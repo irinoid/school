@@ -1,16 +1,20 @@
 package hogwarts.school.service;
 
+import hogwarts.school.exceptions.NotFound;
 import hogwarts.school.model.Faculty;
 import hogwarts.school.model.Student;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class FacultyService {
-    private final HashMap<Long, Faculty> faculties = new HashMap<>();
+    private final Map<Long, Faculty> faculties = new HashMap<>();
     private long lastId = 0;
 
     public Faculty addFaculty(Faculty faculty) {
@@ -28,7 +32,7 @@ public class FacultyService {
             faculties.put(faculty.getId(), faculty);
             return faculty;
         }
-        return null;
+        throw new NotFound();
     }
 
     public Faculty deleteFaculty(long id){
@@ -36,17 +40,17 @@ public class FacultyService {
         if (faculties.containsKey(id)) {
             return faculties.remove(id);
         }
-        return null;
+        throw new NotFound();
     }
 
     public Collection<Faculty> getAllFaculties() {
-        return faculties.values();
+        return new HashSet<>(faculties.values());
     }
 
     public Collection<Faculty> getListSameColor(String color){
         return faculties.values()
                 .stream()
                 .filter(e -> e.getColor() == color)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 }
