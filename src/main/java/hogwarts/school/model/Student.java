@@ -3,15 +3,12 @@ package hogwarts.school.model;
 import java.util.Objects;
 
 public class Student {
+
     private Long id;
+
     private String name;
     private int age;
 
-    public Student(Long id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
 
     public Long getId() {
         return id;
@@ -43,7 +40,7 @@ public class Student {
             return false;
         }
         Student student1 = (Student) other;
-        return id==student1.id;
+        return id == student1.id;
     }
 
     @Override

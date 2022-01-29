@@ -1,10 +1,8 @@
 package hogwarts.school.service;
 
-import hogwarts.school.exceptions.NotFound;
+import hogwarts.school.exceptions.NotFoundException;
 import hogwarts.school.model.Faculty;
-import hogwarts.school.model.Student;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -32,7 +30,7 @@ public class FacultyService {
             faculties.put(faculty.getId(), faculty);
             return faculty;
         }
-        throw new NotFound();
+        throw new NotFoundException();
     }
 
     public Faculty deleteFaculty(long id){
@@ -40,7 +38,7 @@ public class FacultyService {
         if (faculties.containsKey(id)) {
             return faculties.remove(id);
         }
-        throw new NotFound();
+        throw new NotFoundException();
     }
 
     public Collection<Faculty> getAllFaculties() {
