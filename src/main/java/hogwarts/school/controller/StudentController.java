@@ -1,9 +1,8 @@
 package hogwarts.school.controller;
 
-import hogwarts.school.exceptions.BadRequest;
-import hogwarts.school.exceptions.NotFound;
+import hogwarts.school.exceptions.BadRequestException;
 import hogwarts.school.model.Student;
-import hogwarts.school.service.StudentService;
+import hogwarts.school.service.StudentServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +11,9 @@ import java.util.Collection;
 @RestController
 @RequestMapping("students")
 public class StudentController {
-    private final StudentService studentService;
+    private final StudentServiceImpl studentService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentServiceImpl studentService) {
         this.studentService = studentService;
     }
 
@@ -23,7 +22,7 @@ public class StudentController {
 
         Student student = studentService.findStudent(id);
         if (student == null) {
-            throw new BadRequest();
+            throw new BadRequestException();
         }
         return student;
     }
@@ -47,7 +46,7 @@ public class StudentController {
     public Student editStudent(@RequestBody Student student) {
         Student editStudent = studentService.editStudent(student);
         if (editStudent == null) {
-            throw new BadRequest();
+            throw new BadRequestException();
         }
         return editStudent;
     }

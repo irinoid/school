@@ -1,9 +1,8 @@
 package hogwarts.school.controller;
 
-import hogwarts.school.exceptions.BadRequest;
-import hogwarts.school.exceptions.NotFound;
+import hogwarts.school.exceptions.BadRequestException;
 import hogwarts.school.model.Faculty;
-import hogwarts.school.service.FacultyService;
+import hogwarts.school.service.FacultyServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +12,9 @@ import java.util.Collection;
 @RequestMapping("faculties")
 public class FacultyController {
 
-    private final FacultyService facultyService;
+    private final FacultyServiceImpl facultyService;
 
-    public FacultyController(FacultyService facultyService) {
+    public FacultyController(FacultyServiceImpl facultyService) {
         this.facultyService = facultyService;
     }
 
@@ -23,7 +22,7 @@ public class FacultyController {
     public Faculty getFacultyInfo(@PathVariable long id) {
         Faculty faculty = facultyService.findFaculty(id);
         if (faculty == null) {
-            throw new BadRequest();
+            throw new BadRequestException();
         }
         return faculty;
     }
@@ -47,7 +46,7 @@ public class FacultyController {
     public Faculty editFaculty(@RequestBody Faculty faculty) {
         Faculty editFaculty = facultyService.editFaculty(faculty);
         if (editFaculty == null) {
-            throw new BadRequest();
+            throw new BadRequestException();
         }
         return editFaculty;
     }
