@@ -32,9 +32,14 @@ public class FacultyController {
         return facultyService.getAllFaculties();
     }
 
-    @GetMapping("/filter/{color}")
+    @GetMapping("/filter/color/{color}")
     public Collection<Faculty> getFacultiesSameColor(@PathVariable String color) {
         return facultyService.findByColor(color);
+    }
+
+    @GetMapping("/filter/name/{name}")
+    public Collection<Faculty> getFacultiesSameName(@PathVariable String name) {
+        return facultyService.findByNameIgnoreCase(name);
     }
 
     @PostMapping
