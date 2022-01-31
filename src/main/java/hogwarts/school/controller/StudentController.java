@@ -1,6 +1,7 @@
 package hogwarts.school.controller;
 
 import hogwarts.school.exceptions.BadRequestException;
+import hogwarts.school.interfaces.StudentService;
 import hogwarts.school.model.Student;
 import hogwarts.school.service.StudentServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +12,9 @@ import java.util.Collection;
 @RestController
 @RequestMapping("students")
 public class StudentController {
-    private final StudentServiceImpl studentService;
+    private final StudentService studentService;
 
-    public StudentController(StudentServiceImpl studentService) {
+    public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
