@@ -1,6 +1,7 @@
 package hogwarts.school.controller;
 
 import hogwarts.school.exceptions.BadRequestException;
+import hogwarts.school.interfaces.StudentService;
 import hogwarts.school.model.Student;
 import hogwarts.school.service.StudentServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +12,9 @@ import java.util.Collection;
 @RestController
 @RequestMapping("students")
 public class StudentController {
-    private final StudentServiceImpl studentService;
+    private final StudentService studentService;
 
-    public StudentController(StudentServiceImpl studentService) {
+    public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
@@ -32,13 +33,13 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("/filter/{age}")
-    public Collection<Student> getStudentSameAge(@PathVariable int age) {
+    @GetMapping("/filter")
+    public Collection<Student> getStudentSameAge(@RequestParam int age) {
         return studentService.getListSameAge(age);
     }
 
-    @GetMapping("/filter/{minAge}/{maxAge}")
-    public Collection<Student> findByAgeBetween(@PathVariable int minAge, @PathVariable int maxAge) {
+    @GetMapping("/filter")
+    public Collection<Student> findByAgeBetween(@RequestParam int minAge, @RequestParam int maxAge) {
         return studentService.findByAgeBetween(minAge, maxAge);
     }
 

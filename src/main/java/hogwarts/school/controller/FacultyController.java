@@ -1,6 +1,7 @@
 package hogwarts.school.controller;
 
 import hogwarts.school.exceptions.BadRequestException;
+import hogwarts.school.interfaces.FacultyService;
 import hogwarts.school.model.Faculty;
 import hogwarts.school.service.FacultyServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,9 @@ import java.util.Collection;
 @RequestMapping("faculties")
 public class FacultyController {
 
-    private final FacultyServiceImpl facultyService;
+    private final FacultyService facultyService;
 
-    public FacultyController(FacultyServiceImpl facultyService) {
+    public FacultyController(FacultyService facultyService) {
         this.facultyService = facultyService;
     }
 
@@ -32,13 +33,13 @@ public class FacultyController {
         return facultyService.getAllFaculties();
     }
 
-    @GetMapping("/filter/color/{color}")
-    public Collection<Faculty> getFacultiesSameColor(@PathVariable String color) {
+    @GetMapping("/filter")
+    public Collection<Faculty> getFacultiesSameColor(@RequestParam String color) {
         return facultyService.findByColor(color);
     }
 
-    @GetMapping("/filter/name/{name}")
-    public Collection<Faculty> getFacultiesSameName(@PathVariable String name) {
+    @GetMapping("/filter")
+    public Collection<Faculty> getFacultiesSameName(@RequestParam String name) {
         return facultyService.findByNameIgnoreCase(name);
     }
 
