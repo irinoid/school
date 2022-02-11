@@ -1,11 +1,13 @@
 package hogwarts.school.service;
 
+import hogwarts.school.exceptions.BadRequestException;
 import hogwarts.school.interfaces.StudentService;
 import hogwarts.school.model.Student;
 import hogwarts.school.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -44,5 +46,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Collection<Student> getListSameAge(int age) {
         return studentRepository.findByAge(age);
+    }
+
+    @Override
+    public Collection<Student> findByAgeBetween(int minAge, int maxAge) {
+        if (minAge <= maxAge) {
+            return studentRepository.findByAgeBetween(minAge, maxAge);
+        }
+        throw new BadRequestException();
     }
 }

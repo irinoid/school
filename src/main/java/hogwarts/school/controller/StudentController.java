@@ -33,9 +33,14 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("/filter/{age}")
-    public Collection<Student> getStudentSameAge(@PathVariable int age) {
+    @GetMapping("/filter")
+    public Collection<Student> getStudentSameAge(@RequestParam int age) {
         return studentService.getListSameAge(age);
+    }
+
+    @GetMapping("/filter")
+    public Collection<Student> findByAgeBetween(@RequestParam int minAge, @RequestParam int maxAge) {
+        return studentService.findByAgeBetween(minAge, maxAge);
     }
 
     @PostMapping

@@ -3,6 +3,8 @@ package hogwarts.school.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
+import javax.persistence.OneToMany;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +15,8 @@ public class Faculty {
 
     private String name;
     private String color;
+    @OneToMany(mappedBy = "studentFaculty")
+    private List<Student> studentList;
 
     public long getId() {
         return id;
