@@ -20,7 +20,7 @@ public class Avatar {
     @OneToOne
     private Student student;
 
-    public Avatar() {
+    /*public Avatar() {
     }
 
     public Avatar(Long id, String filePath, long fileSize, String mediaType, byte[] data, Student student) {
@@ -30,7 +30,7 @@ public class Avatar {
         this.mediaType = mediaType;
         this.data = data;
         this.student = student;
-    }
+    }*/
 
     public Long getId() {
         return id;
