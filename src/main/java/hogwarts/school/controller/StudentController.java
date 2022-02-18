@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("students")
@@ -40,6 +41,21 @@ public class StudentController {
     @GetMapping("/filter/agebetween")
     public Collection<Student> findByAgeBetween(@RequestParam int minAge, @RequestParam int maxAge) {
         return studentService.findByAgeBetween(minAge, maxAge);
+    }
+
+    @GetMapping("/all")
+    public Integer amountOfStudents() {
+        return studentService.getAmountOfStudents();
+    }
+
+    @GetMapping("/avg-age")
+    public Integer averageStudentsAge() {
+        return studentService.averageStudentsAge();
+    }
+
+    @GetMapping("/five-last-students")
+    public Collection<Student> fiveLastStudents() {
+        return studentService.fiveLastStudents();
     }
 
     @PostMapping
