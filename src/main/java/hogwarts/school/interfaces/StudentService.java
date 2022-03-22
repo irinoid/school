@@ -13,4 +13,7 @@ public interface StudentService {
     Collection<Student> getAllStudents();
     Collection<Student> getListSameAge(int age);
     Collection<Student> findByAgeBetween(int minAge, int maxAge);
+    Integer getAmountOfStudents();
+    Integer averageStudentsAge();
+    Collection<Student> fiveLastStudents();
 }

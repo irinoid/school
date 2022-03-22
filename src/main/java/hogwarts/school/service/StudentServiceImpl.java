@@ -55,4 +55,19 @@ public class StudentServiceImpl implements StudentService {
         }
         throw new BadRequestException();
     }
+
+    @Override
+    public Integer getAmountOfStudents(){
+        return studentRepository.getAmountOfStudents();
+    }
+
+    @Override
+    public Integer averageStudentsAge(){
+        return studentRepository.averageStudentsAge();
+    }
+
+    @Override
+    public Collection<Student> fiveLastStudents(){
+        return studentRepository.fiveLastStudents();
+    }
 }

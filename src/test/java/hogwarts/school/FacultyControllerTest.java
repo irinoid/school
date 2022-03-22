@@ -42,10 +42,10 @@ public class FacultyControllerTest {
         final String name = "abcdefg";
         final String color = "red";
         final long id = 1;
-        final String name1 = "hijklmnop";
+        /*final String name1 = "hijklmnop";
         final String color1 = "blue";
         final long id1 = 2;
-        final List<Faculty> faculties = new ArrayList<>();
+        final List<Faculty> faculties = new ArrayList<>();*/
 
         JSONObject facultyObject = new JSONObject();
         facultyObject.put("name", name);
@@ -56,11 +56,11 @@ public class FacultyControllerTest {
         faculty.setName(name);
         faculty.setColor(color);
 
-        faculties.add(faculty);
+        /*faculties.add(faculty);
 
         //when(facultyRepository.findByColor(color)).thenReturn(faculties);
         //when(facultyRepository.findByNameIgnoreCase(name)).thenReturn(faculties);
-        when(facultyService.findFaculty(any(Long.class))).thenReturn(faculty);
+        when(facultyService.findFaculty(any(Long.class))).thenReturn(faculty);*/
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/faculties/1")
