@@ -3,7 +3,6 @@ package hogwarts.school.controller;
 import hogwarts.school.exceptions.BadRequestException;
 import hogwarts.school.interfaces.StudentService;
 import hogwarts.school.model.Student;
-import hogwarts.school.service.StudentServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +41,7 @@ public class StudentController {
     public Collection<Student> findByAgeBetween(@RequestParam int minAge, @RequestParam int maxAge) {
         return studentService.findByAgeBetween(minAge, maxAge);
     }
+
 
     @PostMapping
     public Student addStudent(@RequestBody Student student) {

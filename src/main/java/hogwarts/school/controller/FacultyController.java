@@ -3,7 +3,6 @@ package hogwarts.school.controller;
 import hogwarts.school.exceptions.BadRequestException;
 import hogwarts.school.interfaces.FacultyService;
 import hogwarts.school.model.Faculty;
-import hogwarts.school.service.FacultyServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
