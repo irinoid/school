@@ -32,16 +32,15 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("/filter")
+    @GetMapping("/filter/sameage")
     public Collection<Student> getStudentSameAge(@RequestParam int age) {
         return studentService.getListSameAge(age);
     }
 
-    @GetMapping("/filter")
+    @GetMapping("/filter/agebetween")
     public Collection<Student> findByAgeBetween(@RequestParam int minAge, @RequestParam int maxAge) {
         return studentService.findByAgeBetween(minAge, maxAge);
     }
-
 
     @PostMapping
     public Student addStudent(@RequestBody Student student) {

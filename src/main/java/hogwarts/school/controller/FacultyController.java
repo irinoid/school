@@ -18,7 +18,7 @@ public class FacultyController {
         this.facultyService = facultyService;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Faculty getFacultyInfo(@PathVariable long id) {
         Faculty faculty = facultyService.findFaculty(id);
         if (faculty == null) {
@@ -32,12 +32,12 @@ public class FacultyController {
         return facultyService.getAllFaculties();
     }
 
-    @GetMapping("/filter")
+    @GetMapping("/filter/color")
     public Collection<Faculty> getFacultiesSameColor(@RequestParam String color) {
         return facultyService.findByColor(color);
     }
 
-    @GetMapping("/filter")
+    @GetMapping("/filter/name")
     public Collection<Faculty> getFacultiesSameName(@RequestParam String name) {
         return facultyService.findByNameIgnoreCase(name);
     }
