@@ -13,4 +13,6 @@ public interface FacultyService {
     Collection<Faculty> getAllFaculties();
     Collection<Faculty> findByColor(String color);
     List<Faculty> findByNameIgnoreCase(String name);
+    String getLongestName();
+    int findIntSum();
 }

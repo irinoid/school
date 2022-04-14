@@ -9,13 +9,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
     Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
+
     public StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
@@ -46,6 +49,19 @@ public class StudentServiceImpl implements StudentService {
     public Collection<Student> getAllStudents() {
         return studentRepository.findAll();
     }
+
+    @Override
+    public Collection<Student> findByLetter(String letter) {
+        return studentRepository.findAllByNameStartsWith(letter).stream()
+                .parallel()
+                .sorted(Comparator.comparing(Student::getName))
+                .collect(Collectors.toList());
+    }
+    @Override
+    public Integer findAverageAge(){
+        return studentRepository.averageStudentsAge();
+    }
+
 
     @Override
     public Collection<Student> getListSameAge(int age) {

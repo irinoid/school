@@ -32,6 +32,16 @@ public class FacultyController {
         return facultyService.getAllFaculties();
     }
 
+    @GetMapping("/longestname")
+    public String getLongestName() {
+        return facultyService.getLongestName();
+    }
+
+    @GetMapping("/getSum")
+    public int getIntSum(){
+        return facultyService.findIntSum();
+    };
+
     @GetMapping("/filter/color")
     public Collection<Faculty> getFacultiesSameColor(@RequestParam String color) {
         return facultyService.findByColor(color);

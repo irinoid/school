@@ -41,7 +41,15 @@ public class StudentController {
     public Collection<Student> findByAgeBetween(@RequestParam int minAge, @RequestParam int maxAge) {
         return studentService.findByAgeBetween(minAge, maxAge);
     }
+    @GetMapping("/avgage")
+    public Integer getAverageAge() {
+        return studentService.findAverageAge();
+    }
 
+    @GetMapping("/firstletter/{letter}")
+    public Collection<Student> findByLetter(@PathVariable String letter) {
+        return studentService.findByLetter(letter);
+    }
     @PostMapping
     public Student addStudent(@RequestBody Student student) {
         return studentService.addStudent(student);

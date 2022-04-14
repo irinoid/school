@@ -22,5 +22,4 @@ public class InfoController {
         return infoService.getCurrentPort();
     }
 
-
 }
