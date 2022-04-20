@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("students")
@@ -25,6 +26,18 @@ public class StudentController {
             throw new BadRequestException();
         }
         return student;
+    }
+
+    @GetMapping("/threads1")
+    public ResponseEntity getListStudentThread1() {
+        studentService.getListStudentThread1();
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/threads2")
+    public ResponseEntity getListStudentThread2() {
+        studentService.getListStudentThread2();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
